@@ -1,0 +1,397 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "ITU API",
+    "description": "This API exposes data about: ITU students and enrollments;  course workloads for each student; course teachers, and their student popularity scores and student satisfaction rating for courses",
+    "version": "1.0.0"
+  },
+  "host": "api.example.com",
+  "basePath": "/v1",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/Student": {
+      "post": {
+        "summary": "Creates a student",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Student",
+            "description": "Student object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Created"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update existing student",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Student",
+            "in": "body",
+            "description": "Student object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Student updated"
+          },
+          "404": {
+            "description": "Student not found"
+          }
+        }
+      },
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "description": "Returns a student with given id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single student",
+            "schema": {
+              "$ref": "#/definitions/Course"
+            }
+          },
+          "400": {
+            "description": "Invalid input type"
+          },
+          "404": {
+            "description": "Id not found"
+          }
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "description": "Deletes the student with given id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Course deleted"
+          },
+          "400": {
+            "description": "Invalid input type"
+          },
+          "404": {
+            "description": "Id not found"
+          }
+        }
+      }
+    },
+    "/Course": {
+      "post": {
+        "summary": "Creates a course",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Course",
+            "description": "A Course is something offered by the university. A course has a teacher, students taking the course and satisfaction rating ",
+            "schema": {
+              "$ref": "#/definitions/Course"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update existing course",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Course",
+            "in": "body",
+            "description": "Course object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Course"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Course updated"
+          },
+          "404": {
+            "description": "Course not found"
+          }
+        }
+      },
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "description": "Returns a course with given id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single course",
+            "schema": {
+              "$ref": "#/definitions/Course"
+            }
+          },
+          "400": {
+            "description": "Invalid input type"
+          },
+          "404": {
+            "description": "Id not found"
+          }
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "description": "Deletes the course with given id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Course deleted"
+          },
+          "400": {
+            "description": "Invalid input type"
+          },
+          "404": {
+            "description": "Id not found"
+          }
+        }
+      }
+    },
+    "/Teacher": {
+      "post": {
+        "summary": "Creates a Teacher",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Course",
+            "description": "A teacher is someone who is teaching at the university. A Teacher has a name, an id and an overall student popularity score.",
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update existing teacher",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Course",
+            "in": "body",
+            "description": "Teacher object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Teacher updated"
+          },
+          "404": {
+            "description": "Teacher not found"
+          }
+        }
+      },
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "description": "Returns a teacher with given id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single teacher",
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          },
+          "400": {
+            "description": "Invalid input type"
+          },
+          "404": {
+            "description": "Id not found"
+          }
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "description": "Deletes the teacher with given id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Teacher deleted"
+          },
+          "400": {
+            "description": "Invalid input type"
+          },
+          "404": {
+            "description": "Id not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Student": {
+      "type": "object",
+      "required": [
+        "name",
+        "age",
+        "id",
+        "enrollment"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "age": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "enrollment": {
+          "type": "boolean"
+        }
+      },
+      "example": {
+        "name": "Bob",
+        "age": 42,
+        "id": 1,
+        "enrollment": true
+      }
+    },
+    "Course": {
+      "type": "object",
+      "required": [
+        "teacher",
+        "id"
+      ],
+      "properties": {
+        "teacher": {
+          "$ref": "#/definitions/Teacher"
+        },
+        "students": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Student"
+          }
+        },
+        "id": {
+          "type": "integer"
+        },
+        "rating": {
+          "type": "number"
+        }
+      }
+    },
+    "Teacher": {
+      "type": "object",
+      "required": [
+        "name",
+        "id"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "score": {
+          "type": "number"
+        }
+      },
+      "example": {
+        "name": "Alice",
+        "id": "25",
+        "score": 5.4
+      }
+    }
+  }
+}
