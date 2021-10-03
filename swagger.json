@@ -350,9 +350,14 @@
       "type": "object",
       "required": [
         "teacher",
-        "id"
+        "id",
+        "name",
+        "etcs"
       ],
       "properties": {
+        "name": {
+          "type": "string"
+        },
         "teacher": {
           "$ref": "#/definitions/Teacher"
         },
@@ -366,6 +371,9 @@
           "type": "integer"
         },
         "rating": {
+          "type": "number"
+        },
+        "etcs": {
           "type": "number"
         }
       }
