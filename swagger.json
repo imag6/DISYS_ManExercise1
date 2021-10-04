@@ -33,10 +33,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Created"
+            "description": "Created student"
           }
         }
-      },
+      }
+    },
+    "/Student/{StudentID}": {
       "put": {
         "summary": "Update existing student",
         "consumes": [
@@ -47,29 +49,30 @@
         ],
         "parameters": [
           {
-            "name": "Student",
-            "in": "body",
-            "description": "Student object that needs to be added",
+            "name": "StudentID",
+            "in": "path",
+            "description": "Student object that needs to be updated given by id",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/Student"
-            }
+            "type": "integer"
           }
         ],
         "responses": {
           "200": {
-            "description": "Student updated"
+            "description": "Student updated",
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
           },
           "404": {
-            "description": "Student not found"
+            "description": "Student ID not found"
           }
         }
       },
       "get": {
         "parameters": [
           {
-            "name": "id",
-            "in": "query",
+            "name": "StudentID",
+            "in": "path",
             "required": true,
             "description": "Returns a student with given id",
             "type": "integer"
@@ -86,15 +89,15 @@
             "description": "Invalid input type"
           },
           "404": {
-            "description": "Id not found"
+            "description": "Student ID not found"
           }
         }
       },
       "delete": {
         "parameters": [
           {
-            "name": "id",
-            "in": "query",
+            "name": "StudentID",
+            "in": "path",
             "required": true,
             "description": "Deletes the student with given id",
             "type": "integer"
@@ -102,13 +105,13 @@
         ],
         "responses": {
           "200": {
-            "description": "Course deleted"
+            "description": "Student deleted"
           },
           "400": {
             "description": "Invalid input type"
           },
           "404": {
-            "description": "Id not found"
+            "description": "Student ID not found"
           }
         }
       }
@@ -137,7 +140,9 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/Course/{CourseID}": {
       "put": {
         "summary": "Update existing course",
         "consumes": [
@@ -148,29 +153,30 @@
         ],
         "parameters": [
           {
-            "name": "Course",
-            "in": "body",
+            "name": "CourseID",
+            "in": "path",
             "description": "Course object that needs to be added",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/Course"
-            }
+            "type": "integer"
           }
         ],
         "responses": {
           "200": {
-            "description": "Course updated"
+            "description": "Course updated",
+            "schema": {
+              "$ref": "#/definitions/Course"
+            }
           },
           "404": {
-            "description": "Course not found"
+            "description": "Course ID not found"
           }
         }
       },
       "get": {
         "parameters": [
           {
-            "name": "id",
-            "in": "query",
+            "name": "CourseID",
+            "in": "path",
             "required": true,
             "description": "Returns a course with given id",
             "type": "integer"
@@ -187,15 +193,15 @@
             "description": "Invalid input type"
           },
           "404": {
-            "description": "Id not found"
+            "description": "Course ID not found"
           }
         }
       },
       "delete": {
         "parameters": [
           {
-            "name": "id",
-            "in": "query",
+            "name": "CourseID",
+            "in": "path",
             "required": true,
             "description": "Deletes the course with given id",
             "type": "integer"
@@ -209,7 +215,7 @@
             "description": "Invalid input type"
           },
           "404": {
-            "description": "Id not found"
+            "description": "Course ID not found"
           }
         }
       }
@@ -238,7 +244,9 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/Teacher/{TeacherID}": {
       "put": {
         "summary": "Update existing teacher",
         "consumes": [
@@ -249,29 +257,33 @@
         ],
         "parameters": [
           {
-            "name": "Course",
-            "in": "body",
+            "name": "TeacherID",
+            "in": "path",
             "description": "Teacher object that needs to be added",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/Teacher"
-            }
+            "type": "integer"
           }
         ],
         "responses": {
           "200": {
-            "description": "Teacher updated"
+            "description": "Teacher updated",
+            "schema": {
+              "$ref": "#/definitions/Teacher"
+            }
+          },
+          "400": {
+            "description": "Invalid input type"
           },
           "404": {
-            "description": "Teacher not found"
+            "description": "Teacher ID not found"
           }
         }
       },
       "get": {
         "parameters": [
           {
-            "name": "id",
-            "in": "query",
+            "name": "TeacherID",
+            "in": "path",
             "required": true,
             "description": "Returns a teacher with given id",
             "type": "integer"
@@ -288,15 +300,15 @@
             "description": "Invalid input type"
           },
           "404": {
-            "description": "Id not found"
+            "description": "Teacher ID not found"
           }
         }
       },
       "delete": {
         "parameters": [
           {
-            "name": "id",
-            "in": "query",
+            "name": "TeacherID",
+            "in": "path",
             "required": true,
             "description": "Deletes the teacher with given id",
             "type": "integer"
@@ -310,7 +322,7 @@
             "description": "Invalid input type"
           },
           "404": {
-            "description": "Id not found"
+            "description": "Teacher ID not found"
           }
         }
       }
@@ -352,20 +364,15 @@
         "teacher",
         "id",
         "name",
-        "etcs"
+        "etcs",
+        "rating"
       ],
       "properties": {
         "name": {
           "type": "string"
         },
         "teacher": {
-          "$ref": "#/definitions/Teacher"
-        },
-        "students": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Student"
-          }
+          "type": "string"
         },
         "id": {
           "type": "integer"
@@ -382,7 +389,8 @@
       "type": "object",
       "required": [
         "name",
-        "id"
+        "id",
+        "score"
       ],
       "properties": {
         "name": {
